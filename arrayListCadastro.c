@@ -4,31 +4,19 @@
 
 #include "arrayListCadastro.h"
 
-// variaveis
-
 int maxSize = 7;
 int position = 0;
-
-// função
+Cadastro *list = NULL;
 
 void add(char value[5][100])
 {
-
-    /*
-    ordem
-    0 - CPF
-    1 - Nome
-    2 - Endereço
-    3 - Telefone
-    4 - Email
-    */
     if (position == maxSize)
     {
         printf("\nAcabou o espaço, precisa fazer a func de almentar");
         return;
-    } // ainda tem espaço;
-    // add os dados
-    strcpy(list[position].cpf, value[0]); // tem que ser assim pq meus dados são string
+    }
+
+    strcpy(list[position].cpf, value[0]);
     strcpy(list[position].nome, value[1]);
     strcpy(list[position].endereco, value[2]);
     strcpy(list[position].telefone, value[3]);
@@ -39,90 +27,103 @@ void add(char value[5][100])
 void delet(char cpf[100])
 {
     int index;
-
-    if (position == 0)
+    if (!findCPF(cpf, &index))
     {
-        printf("\nNenhum cadstro rncontrado");
+        printf("\nCPF não encontrado.");
         return;
     }
 
-    if (findCPF(cpf, index))
-    {
-        // apagar
-    }
+    // Implemente a lógica de exclusão aqui
 }
 
-void modify(char cpf[100],char dadosAlterados[5][100],int *index)
+void modify(char cpf[100], char dadosAlterados[5][100], int *index)
 {
-    if (position == 0)
+    if (!findCPF(cpf, index))
     {
-        printf("\nNenhum cadstro encontrado");
+        printf("\nCPF não encontrado.");
         return;
     }
-    if (findCPF(cpf, index))
-    {
-        //Rece os dados no main
-    strcpy(list[*index].cpf, dadosAlterados[0]); // tem que ser assim pq meus dados são string
+
+    strcpy(list[*index].cpf, dadosAlterados[0]);
     strcpy(list[*index].nome, dadosAlterados[1]);
     strcpy(list[*index].endereco, dadosAlterados[2]);
     strcpy(list[*index].telefone, dadosAlterados[3]);
     strcpy(list[*index].email, dadosAlterados[4]);
-        
-    }
 }
 
-void toPrint(char cpf[100])
+void to_print(char cpf[100])
 {
     int index;
-    if (position == 0)
+    if (!findCPF(cpf, &index))
     {
-        printf("\nNenhum cadstro encontrado");
+        printf("\nCPF não encontrado.");
         return;
     }
-    if (findCPF(cpf, index))
-    {
-        // Achou o cpf
-        printf("\n\nRegintro do CPF: %d", list[index].cpf);
-        printf("\nNome: %d", list[index].nome);
-        printf("\nTelefone: %d", list[index].telefone);
-        printf("\nEndereco", list[index].endereco);
-        printf("\nEmail %d", list[index].email);
-    }
+
+    printf("\n\nRegistro do CPF: %s", list[index].cpf);
+    printf("\nNome: %s", list[index].nome);
+    printf("\nTelefone: %s", list[index].telefone);
+    printf("\nEndereço: %s", list[index].endereco);
+    printf("\nEmail: %s", list[index].email);
 }
 
-void toPrintAll()
+void to_print_all()
 {
     if (position == 0)
     {
-        printf("\nNenhum cadstro encontrado");
+        printf("\nNenhum cadastro encontrado.");
         return;
     }
+
     for (int i = 0; i < position; i++)
     {
-        printf("\n\nRegintro do CPF: %d", list[i].cpf);
-        printf("\nNome: %d", list[i].nome);
-        printf("\nTelefone: %d", list[i].telefone);
-        printf("\nEndereco", list[i].endereco);
-        printf("\nEmail %d", list[i].email);
+        printf("\n\nRegistro do CPF: %s", list[i].cpf);
+        printf("\nNome: %s", list[i].nome);
+        printf("\nTelefone: %s", list[i].telefone);
+        printf("\nEndereço: %s", list[i].endereco);
+        printf("\nEmail: %s", list[i].email);
     }
 }
 
 void orderBy()
 {
-    //Pedir ajuda?
+    bool is_order = false;
+    do
+    {
+        if (position == 0)
+        {
+            is_order = true;
+            return;
+        }
+
+        is_order = true;
+        for (int i = 0; i < position - 1; i++)
+        {
+            for (int j = 0; j < position - i - 1; j++)
+            {
+                if (strcmp(list[j].nome, list[j + 1].nome) > 0)
+                {
+                    Cadastro temp = list[j];
+                    list[j] = list[j + 1];
+                    list[j + 1] = temp;
+                    is_order = false;
+                }
+            }
+        }
+    } while (!is_order);
 }
 
 bool findCPF(char cpf[100], int *index)
 {
-    for (size_t i = 0; i < position; i++)
+    for (int i = 0; i < position; i++)
     {
         if (strcmp(cpf, list[i].cpf) == 0)
         {
-            // add um ponteiro que mude o valor mostre onde está o cpf
             *index = i;
             return true;
         }
     }
-    printf("Esse cpf não está cadastrado");
+
+    printf("CPF não encontrado.");
     return false;
 }

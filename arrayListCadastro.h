@@ -1,41 +1,30 @@
-
-#ifndef ARRAYLISTCADASTRO_ARRATLISTCADASTRO_H
-#define ARRAYLISTCADASTRO_ARRATLISTCADASTRO_H
-
+#ifndef ARRAYLISTCADASTRO_ARRAYLISTCADASTRO_H
+#define ARRAYLISTCADASTRO_ARRAYLISTCADASTRO_H
 
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
-
-
-
-typedef struct{ // é para permitir armazenar dados da
-                // mesma entidade Cadastro na qual depois sera criado uma lista para quardar
-                // essas informações tipo os subtopicos
+// Definição da estrutura Cadastro
+typedef struct {
     char nome[100];
     char endereco[100];
     char cpf[15]; // ###.###.###-##
     char telefone[100];
-    char email[100]
+    char email[100];
 } Cadastro;
 
+// Declaração das funções
 extern int position;
 extern int maxSize;
-extern Cadastro *list; // Cria um ponteiro de list do tipo Cadastro..
+extern Cadastro *list;
 
-//protótipos
-
-
-
-void add();
-void delet();
-void modify(char cpf[100]);
-void toPrint();
+void add(char value[5][100]);
+void delet(char cpf[100]);
+void modify(char cpf[100], char dadosAlterados[5][100], int *index);
+void toPrint(char cpf[100]);
 void toPrintAll();
 void orderBy();
-void expand();
 bool findCPF(char cpf[100], int *index);
 
-
-#endif //ARRAYLISTCADASTRO_ARRATLISTCADASTRO_H
+#endif // ARRAYLISTCADASTRO_ARRAYLISTCADASTRO_H

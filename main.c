@@ -2,7 +2,8 @@
 
 #include "arrayListCadastro.c"
 
-enum{
+enum
+{
     OP_NAO_SELECIONADA = 0,
     OP_ADICIONAR,
     OP_EXCLUIR,
@@ -13,78 +14,87 @@ enum{
     OP_SAIR,
 };
 
-
-
 #define MAX_ITEMS 10
 #define MAX_SUBITEMS 5
 
-int main() {
-   
+int main()
+{
     /*
-    EXEMPLO DE COMO FAZER PRA CHAMAR ADD
-    int novoCadastro[5][100]; // Array para armazenar os dados do novo cadastro
 
     printf("Digite o endereco: ");
     fgets(novoCadastro[1], sizeof(novoCadastro[1]), stdin);
-    novoCadastro[1][strlen(novoCadastro[1]) - 1] = '\0'; esse é melhor 
+    novoCadastro[1][strlen(novoCadastro[1]) - 1] = '\0'; esse é melhor
 
-    // Preencher o array com os dados do novo cadastro
-    printf("Digite o CPF: ");
-    scanf("%s", &novoCadastro[0]);
-    printf("Digite o endereco: ");
-    scanf("%s", novoCadastro[1]); // Assumindo que endereco seja uma string
-    printf("Digite o telefone: ");
-    scanf("%s", novoCadastro[2]); // Assumindo que telefone seja uma string
-    printf("Digite o email: ");
-    scanf("%s", novoCadastro[3]); // Assumindo que email seja uma string
-    printf("Digite o nome: ");
-    scanf("%s", novoCadastro[4]); // Assumindo que nome seja uma string
+   
 
-    // Chamar a função add para adicionar o novo cadastro à lista
-    add(novoCadastro);
+         printf("Novo nome: ");
+         fgets(dadosAlterados[1], sizeof(dadosAlterados[1]), stdin);
+         if (dadosAlterados[1][0] == '\n') {
+             strcpy(dadosAlterados[1], list[index].nome);
+         } else {
+             dadosAlterados[1][strlen(dadosAlterados[1]) - 1] = '\0'; // Remover a nova linha do final
+         }
+ //Verifica se precionado o <ENTER>
+ #include <stdio.h>
+
+ int main() {
+     char ch;
+
+     printf("Pressione Enter para continuar...");
+
+     ch = getchar();
+
+     if (ch == '\n') {
+         printf("Enter pressionado. Continuando...\n");
+     } else {
+         printf("Outra tecla foi pressionada.\n");
+     }
+
+     return 0;
+ }
+
+         // Repita o mesmo padrão para os outros campos
+
+         // Chamar a função modify para alterar os dados
+         modify(cpf, dadosAlterados, &index);
+     } else {
+         printf("CPF não cadastrado.\n");
+     }
+
+     return 0;
+ }
+
+     *
     */
-   /**
-    * int main() {
-    char cpf[100];
-    char dadosAlterados[5][100];
-    int index;
+    char novoCadastro[5][100]; // Array para armazenar os dados do novo cadastro
 
-    printf("Digite o CPF do cadastro a ser alterado: ");
-    scanf("%s", cpf);
+    for (int i = 0; i < 3; i++)
+    {
+        // Preencher o array com os dados do novo cadastro
+        printf("Digite o CPF: ");
+        fgets(novoCadastro[0], sizeof(novoCadastro[0]), stdin);
+        strtok(novoCadastro[0], "\n"); // Remover a nova linha do final
 
-    if (findCPF(cpf, &index)) {
-        printf("Digite os novos dados (ou pressione Enter para manter os atuais):\n");
-        printf("Novo CPF: ");
-        fgets(dadosAlterados[0], sizeof(dadosAlterados[0]), stdin);
-        if (dadosAlterados[0][0] == '\n') {
-            strcpy(dadosAlterados[0], list[index].cpf);
-        } else {
-            dadosAlterados[0][strlen(dadosAlterados[0]) - 1] = '\0'; // Remover a nova linha do final
-        }
+        printf("Digite o nome: ");
+        fgets(novoCadastro[1], sizeof(novoCadastro[4]), stdin);
+        strtok(novoCadastro[1], "\n"); // Remover a nova linha do final
+        printf("Digite o endereco: ");
+        fgets(novoCadastro[2], sizeof(novoCadastro[1]), stdin);
+        strtok(novoCadastro[2], "\n"); // Remover a nova linha do final
 
-        printf("Novo nome: ");
-        fgets(dadosAlterados[1], sizeof(dadosAlterados[1]), stdin);
-        if (dadosAlterados[1][0] == '\n') {
-            strcpy(dadosAlterados[1], list[index].nome);
-        } else {
-            dadosAlterados[1][strlen(dadosAlterados[1]) - 1] = '\0'; // Remover a nova linha do final
-        }
+        printf("Digite o telefone: ");
+        fgets(novoCadastro[3], sizeof(novoCadastro[2]), stdin);
+        strtok(novoCadastro[3], "\n"); // Remover a nova linha do final
 
-        // Repita o mesmo padrão para os outros campos
+        printf("Digite o email: ");
+        fgets(novoCadastro[4], sizeof(novoCadastro[3]), stdin);
+        strtok(novoCadastro[4], "\n"); // Remover a nova linha do final
 
-        // Chamar a função modify para alterar os dados
-        modify(cpf, dadosAlterados, &index);
-    } else {
-        printf("CPF não cadastrado.\n");
+        // Chamar a função add para adicionar o novo cadastro à lista
+        add(novoCadastro);
     }
 
-    return 0;
-}
+    orderBy();
 
-    * 
-   */
     return 0;
-}
-int menu(){
-    
 }
