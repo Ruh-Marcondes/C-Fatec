@@ -38,11 +38,15 @@ int main() {
     }
     /*
     EXEMPLO DE COMO FAZER PRA CHAMAR ADD
-    int novoCadastro[5]; // Array para armazenar os dados do novo cadastro
+    int novoCadastro[5][100]; // Array para armazenar os dados do novo cadastro
+
+    printf("Digite o endereco: ");
+    fgets(novoCadastro[1], sizeof(novoCadastro[1]), stdin);
+    novoCadastro[1][strlen(novoCadastro[1]) - 1] = '\0'; esse é melhor 
 
     // Preencher o array com os dados do novo cadastro
     printf("Digite o CPF: ");
-    scanf("%d", &novoCadastro[0]);
+    scanf("%s", &novoCadastro[0]);
     printf("Digite o endereco: ");
     scanf("%s", novoCadastro[1]); // Assumindo que endereco seja uma string
     printf("Digite o telefone: ");
