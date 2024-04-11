@@ -17,84 +17,97 @@ enum
 #define MAX_ITEMS 10
 #define MAX_SUBITEMS 5
 
+// prototipo
+int menu();
+
 int main()
 {
-    /*
+    //variaveis locais
+    int opcao = OP_NAO_SELECIONADA;
+    char cpf[100], nome[100], email[100], telefone[100], endereco[100];
+    char alterarDados[5][100];
 
-    printf("Digite o endereco: ");
-    fgets(novoCadastro[1], sizeof(novoCadastro[1]), stdin);
-    novoCadastro[1][strlen(novoCadastro[1]) - 1] = '\0'; esse é melhor
 
-   
-
-         printf("Novo nome: ");
-         fgets(dadosAlterados[1], sizeof(dadosAlterados[1]), stdin);
-         if (dadosAlterados[1][0] == '\n') {
-             strcpy(dadosAlterados[1], list[index].nome);
-         } else {
-             dadosAlterados[1][strlen(dadosAlterados[1]) - 1] = '\0'; // Remover a nova linha do final
-         }
- //Verifica se precionado o <ENTER>
- #include <stdio.h>
-
- int main() {
-     char ch;
-
-     printf("Pressione Enter para continuar...");
-
-     ch = getchar();
-
-     if (ch == '\n') {
-         printf("Enter pressionado. Continuando...\n");
-     } else {
-         printf("Outra tecla foi pressionada.\n");
-     }
-
-     return 0;
- }
-
-         // Repita o mesmo padrão para os outros campos
-
-         // Chamar a função modify para alterar os dados
-         modify(cpf, dadosAlterados, &index);
-     } else {
-         printf("CPF não cadastrado.\n");
-     }
-
-     return 0;
- }
-
-     *
-    */
-    char novoCadastro[5][100]; // Array para armazenar os dados do novo cadastro
-
-    for (int i = 0; i < 3; i++)
+    init();
+    while (opcao != OP_SAIR)
     {
-        // Preencher o array com os dados do novo cadastro
-        printf("Digite o CPF: ");
-        fgets(novoCadastro[0], sizeof(novoCadastro[0]), stdin);
-        strtok(novoCadastro[0], "\n"); // Remover a nova linha do final
+        opcao = menu();
+        switch (opcao)
+        {
+        case OP_ADICIONAR:
+            printf("Digite o CPF: ");
+            scanf("%s", cpf);
+            getchar(); // Limpar o buffer
 
-        printf("Digite o nome: ");
-        fgets(novoCadastro[1], sizeof(novoCadastro[4]), stdin);
-        strtok(novoCadastro[1], "\n"); // Remover a nova linha do final
-        printf("Digite o endereco: ");
-        fgets(novoCadastro[2], sizeof(novoCadastro[1]), stdin);
-        strtok(novoCadastro[2], "\n"); // Remover a nova linha do final
+            printf("Digite o nome: ");
+            scanf("%s", nome);
+            getchar(); // Limpar o buffer
 
-        printf("Digite o telefone: ");
-        fgets(novoCadastro[3], sizeof(novoCadastro[2]), stdin);
-        strtok(novoCadastro[3], "\n"); // Remover a nova linha do final
+            printf("Digite o endereco: ");
+            scanf("%s", endereco);
+            getchar(); // Limpar o buffer
 
-        printf("Digite o email: ");
-        fgets(novoCadastro[4], sizeof(novoCadastro[3]), stdin);
-        strtok(novoCadastro[4], "\n"); // Remover a nova linha do final
+            printf("Digite o telefone: ");
+            scanf("%s", telefone);
+            getchar(); // Limpar o buffer
 
-        // Chamar a função add para adicionar o novo cadastro à lista
-        add(novoCadastro);
+            printf("Digite o email: ");
+            scanf("%s", email);
+            getchar(); // Limpar o buffer
+
+            add(cpf, nome, endereco, telefone, email);
+
+            break;
+
+        case OP_EXCLUIR:
+            printf("Digite o CPF: ");
+            scanf("%s", cpf);
+            delet(cpf);
+            break;
+
+        case OP_IMPRIMIR:
+            printf("Digite o CPF: ");
+            scanf("%s", cpf);
+            toPrint(cpf);
+            break;
+        case OP_IMPRIMIR_TODOS:
+            toPrintAll();
+            break;
+            case OP_ORDENAR:
+            orderBy();
+            break;
+        case OP_SAIR:
+            break;
+            case OP_ALTERAR:
+            printf("Digite o CPF da qual os dados desenja alterar: ");
+            
+            scanf("%s", cpf);
+            
+          //  modify(cpf);
+            break;
+        default:
+            printf("Opcao invalida!");
+        }
     }
 
-    orderBy();
+    return EXIT_SUCCESS;
+}
 
-    return 0;
+int menu()
+{
+    int op = OP_NAO_SELECIONADA;
+
+    printf("\nMENU\n");
+    printf("%d - Add\n", OP_ADICIONAR);
+    printf("%d - Delete\n", OP_EXCLUIR);
+    printf("%d - Alterar\n",OP_ALTERAR);
+    printf("%d - Print by CPF\n", OP_IMPRIMIR);
+    printf("%d - Print\n", OP_IMPRIMIR_TODOS);
+    printf("%d - Ordenar\n", OP_ORDENAR);
+    printf("%d - Sair\n", OP_SAIR);
+    printf("Digite sua opcao: ");
+    scanf("%d", &op);
+    scanf("%*c");
+
+    return op;
 }
