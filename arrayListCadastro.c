@@ -25,6 +25,7 @@ void add(char value[5][100])
     if (position == maxSize)
     {
         printf("\nAcabou o espaço, precisa fazer a func de almentar");
+        return;
     } // ainda tem espaço;
     // add os dados
     strcpy(list[position].cpf, value[0]); // tem que ser assim pq meus dados são string
@@ -51,18 +52,22 @@ void delet(char cpf[100])
     }
 }
 
-void modify(char cpf[100])
+void modify(char cpf[100],char dadosAlterados[5][100],int *index)
 {
-    int index;
     if (position == 0)
     {
-        printf("\nNenhum cadstro rncontrado");
+        printf("\nNenhum cadstro encontrado");
         return;
     }
     if (findCPF(cpf, index))
     {
-        // Achou o cpf
-        list[index].nome;
+        //Rece os dados no main
+    strcpy(list[*index].cpf, dadosAlterados[0]); // tem que ser assim pq meus dados são string
+    strcpy(list[*index].nome, dadosAlterados[1]);
+    strcpy(list[*index].endereco, dadosAlterados[2]);
+    strcpy(list[*index].telefone, dadosAlterados[3]);
+    strcpy(list[*index].email, dadosAlterados[4]);
+        
     }
 }
 
@@ -104,6 +109,7 @@ void toPrintAll()
 
 void orderBy()
 {
+    //Pedir ajuda?
 }
 
 bool findCPF(char cpf[100], int *index)

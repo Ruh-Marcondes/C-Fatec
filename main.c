@@ -19,23 +19,7 @@ enum{
 #define MAX_SUBITEMS 5
 
 int main() {
-    int matriz[MAX_ITEMS][MAX_SUBITEMS];
-
-    // Exemplo de inicialização da matriz
-    for (int i = 0; i < MAX_ITEMS; i++) {
-        for (int j = 0; j < MAX_SUBITEMS; j++) {
-            matriz[i][j] = i * 10 + j; // Exemplo de valor a ser armazenado na matriz
-        }
-    }
-
-    // Exemplo de acesso aos elementos da matriz
-    for (int i = 0; i < MAX_ITEMS; i++) {
-        printf("Item principal %d:\n", i);
-        for (int j = 0; j < MAX_SUBITEMS; j++) {
-            printf("Subitem %d: %d\n", j, matriz[i][j]);
-        }
-        printf("\n");
-    }
+   
     /*
     EXEMPLO DE COMO FAZER PRA CHAMAR ADD
     int novoCadastro[5][100]; // Array para armazenar os dados do novo cadastro
@@ -59,6 +43,46 @@ int main() {
     // Chamar a função add para adicionar o novo cadastro à lista
     add(novoCadastro);
     */
+   /**
+    * int main() {
+    char cpf[100];
+    char dadosAlterados[5][100];
+    int index;
+
+    printf("Digite o CPF do cadastro a ser alterado: ");
+    scanf("%s", cpf);
+
+    if (findCPF(cpf, &index)) {
+        printf("Digite os novos dados (ou pressione Enter para manter os atuais):\n");
+        printf("Novo CPF: ");
+        fgets(dadosAlterados[0], sizeof(dadosAlterados[0]), stdin);
+        if (dadosAlterados[0][0] == '\n') {
+            strcpy(dadosAlterados[0], list[index].cpf);
+        } else {
+            dadosAlterados[0][strlen(dadosAlterados[0]) - 1] = '\0'; // Remover a nova linha do final
+        }
+
+        printf("Novo nome: ");
+        fgets(dadosAlterados[1], sizeof(dadosAlterados[1]), stdin);
+        if (dadosAlterados[1][0] == '\n') {
+            strcpy(dadosAlterados[1], list[index].nome);
+        } else {
+            dadosAlterados[1][strlen(dadosAlterados[1]) - 1] = '\0'; // Remover a nova linha do final
+        }
+
+        // Repita o mesmo padrão para os outros campos
+
+        // Chamar a função modify para alterar os dados
+        modify(cpf, dadosAlterados, &index);
+    } else {
+        printf("CPF não cadastrado.\n");
+    }
+
+    return 0;
+}
+
+    * 
+   */
     return 0;
 }
 int menu(){
