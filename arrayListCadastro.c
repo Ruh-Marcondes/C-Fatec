@@ -50,11 +50,15 @@ void delet(char cpf[100])
     }
 }
 
-void modify()
+void modify(char cpf[100])
 {
+    int index;
+    if(findCPF(cpf,index)){
+
+    }
 }
 
-void toPrint()
+void toPrint(char cpf[100])
 {
 }
 

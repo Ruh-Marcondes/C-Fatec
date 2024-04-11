@@ -30,7 +30,7 @@ extern Cadastro *list; // Cria um ponteiro de list do tipo Cadastro..
 
 void add();
 void delet();
-void modify();
+void modify(char cpf[100]);
 void toPrint();
 void toPrintAll();
 void orderBy();
